@@ -7,7 +7,7 @@ using namespace std;
     if(node == NULL){ // if node is null, return empty string
       return "";
     }
-    if(node -> character == character){ // if node's character matches the character we are looking for, return the encoding
+    if(node -> character == character){ // if node's character matches the character return the encoding
       return encoding;
     }
     string left_encoding = find_encoding(node -> left, character, encoding + "0"); // search left subtree and append 0 to encoding
@@ -115,7 +115,7 @@ void HuffmanTree::construct(const string message) {
 }
 
 
-void HuffmanTree::print() const{   // need to implement this function 
+void HuffmanTree::print() const{ 
   
   // Print the Huffman encoding of this->message.
   // Append 0 to a character's encoding if moving left in Huffman tree.
@@ -130,6 +130,6 @@ void HuffmanTree::print() const{   // need to implement this function
     string encoded = find_encoding(this->root, message[i], ""); // find encoding for each character in message
     cout << encoded << " "; // print encoding for each character in message
   }
-  cout << endl; // print newline at end of message
+  cout << endl; // print line for the end of the message
 }
 
