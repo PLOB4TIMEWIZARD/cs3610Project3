@@ -20,9 +20,9 @@ public:
 
   void insert(const T data, const int key);
   T extract_min();
-  T peek() const {T data; return data;}; // need to implement this function
+  T peek() const; // need to implement this function
 
-  int size() const { return 0;};         // need to implement this function
+  int size() const {return heap.size();}      // need to implement this function
 
 private:
   vector<HeapNode<T> > heap;

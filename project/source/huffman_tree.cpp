@@ -3,6 +3,21 @@
 #include "min_heap.h"
 using namespace std;
 
+  string find_encoding(HuffmanNode* node, char character, string encoding){ // helper function to find encoding for a character in huffman tree
+    if(node == NULL){ // if node is null, return empty string
+      return "";
+    }
+    if(node -> character == character){ // if node's character matches the character we are looking for, return the encoding
+      return encoding;
+    }
+    string left_encoding = find_encoding(node -> left, character, encoding + "0"); // search left subtree and append 0 to encoding
+    if(left_encoding != ""){ // if encoding is found in left subtree, return it
+      return left_encoding;
+    }
+    string right_encoding = find_encoding(node -> right, character, encoding + "1"); // search right subtree and append 1 to encoding
+    return right_encoding; // return encoding found in right subtree (or empty string if not found)
+  }
+
 void HuffmanTree::construct(const string message) {
   this->message = message;
 
@@ -100,7 +115,7 @@ void HuffmanTree::construct(const string message) {
 }
 
 
-void HuffmanTree::print() const {   // need to implement this function 
+void HuffmanTree::print() const{   // need to implement this function 
   
   // Print the Huffman encoding of this->message.
   // Append 0 to a character's encoding if moving left in Huffman tree.
@@ -111,5 +126,10 @@ void HuffmanTree::print() const {   // need to implement this function
 
   // Also, feel free to add a print helper function.
 
+  for(int i = 0; i < message.length(); ++i){
+    string encoded = find_encoding(this->root, message[i], ""); // find encoding for each character in message
+    cout << encoded << " "; // print encoding for each character in message
+  }
+  cout << endl; // print newline at end of message
 }
 

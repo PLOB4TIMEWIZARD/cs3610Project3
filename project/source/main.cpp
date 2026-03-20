@@ -19,9 +19,9 @@ int main(int argc, char** argv) {
     // HuffmanTree construct function. Next, print the encoded message.
     // Finally, destruct the huffman tree and move on to the next test case.
 				     
-    //tree.construct(message);
-    //tree.print();
-    //tree.destruct();
+    tree.construct(message);
+    tree.print();
+    tree.destruct();
   }
 
 }
