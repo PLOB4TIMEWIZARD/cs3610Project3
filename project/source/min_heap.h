@@ -22,7 +22,7 @@ public:
   T extract_min();
   T peek() const; // need to implement this function
 
-  int size() const {return heap.size();}      // need to implement this function
+  int size() const {return heap.size();} 
 
 private:
   vector<HeapNode<T> > heap;
@@ -35,11 +35,14 @@ void MinHeap<T>::insert(const T data, const int key) {
 
   for(size_t i = heap.size() - 1; i > 0;){
     size_t parent = (i - 1) / 2; // calculate parent index
+
     if(heap[i] <= heap[parent]) { // if new node is smaller than parent, swap
       swap(heap[i], heap[parent]);
       i = parent; // update i to parent index and continue loop
     }
+
     else break; // if new node is not smaller than parent, stop loop
+
   }
 }
 
@@ -68,15 +71,19 @@ T MinHeap<T>::extract_min(){       // if heap is empty, return default value of 
     if(left < this -> size() && this -> heap[left] < this -> heap[smallest]){ // if left child is smaller than current smallest, update smallest index
       smallest = left;
     }
+
     if(right < this -> size() && this -> heap[right] < this -> heap[smallest]){ // if right child is smaller than current smallest, update smallest index
       smallest = right;
     }
+
     if(smallest != i){ // if smallest index is not current index, swap and continue loop
       swap(this -> heap[i], this -> heap[smallest]);
       i = smallest; // update i to smallest index and continue loop
     }
+
     else break; // if smallest index is current index, stop loop
   }
+
   
    return data;
 }
@@ -86,6 +93,7 @@ T MinHeap<T>::peek() const{
   if(this -> heap.empty()){
     return T();
   }
+
   return this -> heap[0].data; // return data of minimum node (root of heap)
   
 }

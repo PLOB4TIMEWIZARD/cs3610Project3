@@ -31,7 +31,7 @@ public:
   ~HuffmanTree() {delete this->root;}
 
   void construct(const string message);
-  void destruct() {delete this->root; this->root=NULL; message="";}
+  void destruct() {delete this -> root; this -> root=NULL; message="";}
   void print() const;
 
 private:

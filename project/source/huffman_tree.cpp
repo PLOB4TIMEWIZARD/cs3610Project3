@@ -19,7 +19,7 @@ using namespace std;
   }
 
 void HuffmanTree::construct(const string message) {
-  this->message = message;
+  this -> message = message;
 
   // Count the frequency of each letter in message
   // e.g. 
@@ -46,9 +46,9 @@ void HuffmanTree::construct(const string message) {
   map<char, int>::iterator it = frequency_map.begin();
   for (; it != frequency_map.end(); ++it) {
     HuffmanNode* node = new HuffmanNode(
-      it->first, it->second
+      it -> first, it -> second
     );
-    heap.insert(node, it->second);
+    heap.insert(node, it -> second);
   }
 
   // Combine nodes with smallest frequency and insert
@@ -95,20 +95,35 @@ void HuffmanTree::construct(const string message) {
   //
   //     heap == {*:11}
   while (heap.size() > 1) {
-    HuffmanNode *left, *right;
+    HuffmanNode *left;
+    HuffmanNode *right;
 
     left = heap.extract_min();
     right = heap.extract_min();
 
+   
+    if (
+        (right->frequency < left->frequency) ||
+        (right->frequency == left->frequency &&
+         (
+           (left->character == '\0' && right->character != '\0') || 
+           (left->character != '\0' && right->character != '\0' && right->character < left->character)
+         )
+        )
+    ) 
+    {
+        swap(left, right);
+    }
+
     HuffmanNode *parent = new HuffmanNode(
-      left->frequency + right->frequency
+        left->frequency + right->frequency
     );
 
     parent->left = left;
     parent->right = right;
 
     heap.insert(parent, parent->frequency);
-  }
+}
 
   // Get root of huffman tree. e.g. {*:11}
   this->root = heap.peek();
@@ -127,7 +142,7 @@ void HuffmanTree::print() const{
   // Also, feel free to add a print helper function.
 
   for(int i = 0; i < message.length(); ++i){
-    string encoded = find_encoding(this->root, message[i], ""); // find encoding for each character in message
+    string encoded = find_encoding(this -> root, message[i], ""); // find encoding for each character in message
     cout << encoded << " "; // print encoding for each character in message
   }
   cout << endl; // print line for the end of the message

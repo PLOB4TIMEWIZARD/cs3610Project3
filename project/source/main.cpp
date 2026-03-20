@@ -2,6 +2,8 @@
 #include "huffman_tree.h"
 using namespace std;
 
+// time complexity: O(nlogn) where n is the number of unique characters in the message
+
 int main(int argc, char** argv) {
 
   HuffmanTree tree;
